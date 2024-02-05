@@ -36,4 +36,7 @@ public class Account {
   @Column(name = "updated_at")
   @UpdateTimestamp
   private OffsetDateTime updatedAt;
+
+  @Column(name = "stripeId")
+  private String stripeCustomerId;
 }

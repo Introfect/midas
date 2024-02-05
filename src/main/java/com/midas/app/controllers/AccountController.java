@@ -2,6 +2,7 @@ package com.midas.app.controllers;
 
 import com.midas.app.mappers.Mapper;
 import com.midas.app.models.Account;
+import com.midas.app.providers.external.stripe.StripePaymentProvider;
 import com.midas.app.services.AccountService;
 import com.midas.generated.api.AccountsApi;
 import com.midas.generated.model.AccountDto;
@@ -37,7 +38,9 @@ public class AccountController implements AccountsApi {
                 .firstName(createAccountDto.getFirstName())
                 .lastName(createAccountDto.getLastName())
                 .email(createAccountDto.getEmail())
+                    .stripeCustomerId(createAccountDto.get)
                 .build());
+    Account customer = StripePaymentProvider.createAccount(request.getEmail());
 
     return new ResponseEntity<>(Mapper.toAccountDto(account), HttpStatus.CREATED);
   }
